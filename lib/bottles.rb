@@ -1,6 +1,11 @@
 class Bottles
   def verse(bottles)
     case
+    when bottles == 1
+      return <<-VERSE
+1 bottle of beer on the wall, 1 bottle of beer.
+Take it down and pass it around, no more bottles of beer on the wall.
+VERSE
     when bottles < 3
     return <<-VERSE
 #{bottles} bottles of beer on the wall, #{bottles} bottles of beer.
