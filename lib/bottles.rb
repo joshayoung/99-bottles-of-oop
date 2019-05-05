@@ -23,4 +23,12 @@ Take one down and pass it around, #{bottles - 1} bottles of beer on the wall.
 VERSE
     end
   end
+
+  def verses(verse_start, verse_end)
+    song = ""
+    verse_start.downto(verse_end).each do |i|
+      song += verse(i) + "\n"
+   end
+   return song.chomp
+  end
 end
