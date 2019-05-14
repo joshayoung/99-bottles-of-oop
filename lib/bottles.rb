@@ -1,35 +1,23 @@
 class Bottles
   def verse(bottles)
-    case
-    when bottles == 0
-      return <<-VERSE
-No more bottles of beer on the wall, no more bottles of beer.
-Go to the store and buy some more, 99 bottles of beer on the wall.
-VERSE
-    when bottles == 1
-      return <<-VERSE
-1 bottle of beer on the wall, 1 bottle of beer.
-Take it down and pass it around, no more bottles of beer on the wall.
-VERSE
-    when bottles < 3
-    return <<-VERSE
-#{bottles} bottles of beer on the wall, #{bottles} bottles of beer.
-Take one down and pass it around, #{bottles - 1} bottle of beer on the wall.
-VERSE
+    case bottles
+    when 0
+      "No more bottles of beer on the wall, no more bottles of beer.\n" +
+      "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
+    when 1
+      "1 bottle of beer on the wall, 1 bottle of beer.\n" +
+      "Take it down and pass it around, no more bottles of beer on the wall.\n"
+    when 2
+      "2 bottles of beer on the wall, 2 bottles of beer.\n" +
+      "Take one down and pass it around, 1 bottle of beer on the wall.\n"
     else
-    return <<-VERSE
-#{bottles} bottles of beer on the wall, #{bottles} bottles of beer.
-Take one down and pass it around, #{bottles - 1} bottles of beer on the wall.
-VERSE
+      "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer.\n" +
+      "Take one down and pass it around, #{bottles - 1} bottles of beer on the wall.\n"
     end
   end
 
   def verses(verse_start, verse_end)
-    song = ""
-    verse_start.downto(verse_end).each do |i|
-      song += verse(i) + "\n"
-   end
-   return song.chomp
+    verse_start.downto(verse_end).map { |i| verse(i) }.join("\n")
   end
 
   def song
