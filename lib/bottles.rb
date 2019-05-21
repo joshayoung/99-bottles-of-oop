@@ -2,17 +2,17 @@ class Bottles
   def verse(bottles)
     case bottles
     when 0
-      "No more bottles of beer on the wall, no more bottles of beer.\n" +
-      "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
+      "No more #{container(bottles)} of beer on the wall, no more #{container(bottles)} of beer.\n" +
+      "Go to the store and buy some more, 99 #{container(bottles)} of beer on the wall.\n"
     when 1
-      "1 bottle of beer on the wall, 1 bottle of beer.\n" +
-      "Take it down and pass it around, no more bottles of beer on the wall.\n"
+      "#{container(bottles)} of beer on the wall, #{container(bottles)} of beer.\n" +
+      "Take it down and pass it around, no more #{container(bottles - 1)} of beer on the wall.\n"
     when 2
-      "2 bottles of beer on the wall, 2 bottles of beer.\n" +
-      "Take one down and pass it around, 1 bottle of beer on the wall.\n"
+      "#{container(bottles)} of beer on the wall, #{container(bottles)} of beer.\n" +
+      "Take one down and pass it around, #{container(bottles - 1)} of beer on the wall.\n"
     else
-      "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer.\n" +
-      "Take one down and pass it around, #{bottles - 1} bottles of beer on the wall.\n"
+      "#{container(bottles)} of beer on the wall, #{container(bottles)} of beer.\n" +
+      "Take one down and pass it around, #{container(bottles - 1, true)} of beer on the wall.\n"
     end
   end
 
@@ -22,5 +22,13 @@ class Bottles
 
   def song
     verses(99, 0)
+  end
+
+  def container(quantity, second_line = false)
+    return quantity.to_s + " bottle" if quantity == 1
+    return "bottles" if quantity == 0
+    return "1 six-pack" if quantity == 6 && !second_line
+
+    quantity.to_s + " bottles"
   end
 end
