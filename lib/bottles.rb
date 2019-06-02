@@ -1,13 +1,13 @@
 class Bottles
   def verse(bottles)
+    the_verse = "#{no_more_line_one(bottles)}#{container(bottles)} of beer on the wall, #{no_more_line_one(bottles, true)}#{container(bottles)} of beer.\n"
     case bottles
     when 0
-      "No more #{container(bottles)} of beer on the wall, no more #{container(bottles)} of beer.\n" +
-      "Go to the store and buy some more, 99 #{container(bottles)} of beer on the wall.\n"
+      the_verse += "Go to the store and buy some more, #{no_more(bottles)}#{container(bottles)} of beer on the wall.\n"
     else
-      "#{container(bottles)} of beer on the wall, #{container(bottles)} of beer.\n" +
-      "Take #{pronoun(bottles)} down and pass it around, #{no_more(bottles)}#{container(bottles - 1, true)} of beer on the wall.\n"
+      the_verse += "Take #{pronoun(bottles)} down and pass it around, #{no_more(bottles)}#{container(bottles - 1, true)} of beer on the wall.\n"
     end
+    the_verse
   end
 
   def pronoun(bottles)
@@ -16,7 +16,13 @@ class Bottles
   end
 
   def no_more(bottles)
-    "no more " if bottles == 1
+    return "no more " if bottles == 1
+    "99 " if bottles == 0
+  end
+
+  def no_more_line_one(bottles, lower = false)
+    return "no more " if lower && bottles == 0
+    "No more " if bottles == 0
   end
 
   def verses(verse_start, verse_end)
