@@ -4,16 +4,19 @@ class Bottles
     when 0
       "No more #{container(bottles)} of beer on the wall, no more #{container(bottles)} of beer.\n" +
       "Go to the store and buy some more, 99 #{container(bottles)} of beer on the wall.\n"
-    when 1
-      "#{container(bottles)} of beer on the wall, #{container(bottles)} of beer.\n" +
-      "Take it down and pass it around, no more #{container(bottles - 1)} of beer on the wall.\n"
-    when 2
-      "#{container(bottles)} of beer on the wall, #{container(bottles)} of beer.\n" +
-      "Take one down and pass it around, #{container(bottles - 1)} of beer on the wall.\n"
     else
       "#{container(bottles)} of beer on the wall, #{container(bottles)} of beer.\n" +
-      "Take one down and pass it around, #{container(bottles - 1, true)} of beer on the wall.\n"
+      "Take #{pronoun(bottles)} down and pass it around, #{no_more(bottles)}#{container(bottles - 1, true)} of beer on the wall.\n"
     end
+  end
+
+  def pronoun(bottles)
+    return "it" if bottles == 1
+    "one"
+  end
+
+  def no_more(bottles)
+    "no more " if bottles == 1
   end
 
   def verses(verse_start, verse_end)
