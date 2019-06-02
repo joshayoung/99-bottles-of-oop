@@ -1,6 +1,9 @@
 gem 'minitest', '~> 5.4'
 require 'minitest/autorun'
 require_relative '../lib/bottles'
+require "pry"
+require "pry-remote"
+require "pry-nav"
 
 class BottlesTest < Minitest::Test
   def test_the_first_verse
