@@ -1,17 +1,15 @@
 class Bottles
   def verse(bottles)
-    "#{no_more_line_one(bottles)}#{container(bottles)} of beer on the wall, #{no_more_line_one(bottles, true)}#{container(bottles)} of beer.\n" +
+    "#{no_more(bottles, first_line: true)}#{container(bottles)} of beer on the wall, #{no_more(bottles, lower: true, first_line: true)}#{container(bottles)} of beer.\n" +
     "#{phrase(bottles)} #{no_more(bottles)}#{container(bottles - 1, true)} of beer on the wall.\n"
   end
 
-  def no_more(bottles, lower = false)
-    return "no more " if bottles == 1
-    "99 " if bottles == 0
-  end
-
-  def no_more_line_one(bottles, lower = false)
+  def no_more(bottles, lower: false, first_line: false)
+    return "no more " if bottles == 1 && !first_line
     return "no more " if lower && bottles == 0
-    "No more " if bottles == 0
+    return "No more " if bottles == 0 && first_line
+
+    "99 " if bottles == 0
   end
 
   def container(quantity, second_line = false)
@@ -25,9 +23,9 @@ class Bottles
   def phrase(bottles)
     return "Go to the store and buy some more," if bottles == 0
     return "Take it down and pass it around," if bottles == 1
+
     "Take one down and pass it around,"
   end
-
 
   def verses(verse_start, verse_end)
     verse_start.downto(verse_end).map { |i| verse(i) }.join("\n")
@@ -36,5 +34,4 @@ class Bottles
   def song
     verses(99, 0)
   end
-
 end
