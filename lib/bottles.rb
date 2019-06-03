@@ -4,13 +4,16 @@ class Bottles
     when 0
       "No more #{container(bottles)} of beer on the wall, no more #{container(bottles)} of beer.\n" +
       "Go to the store and buy some more, 99 #{container(bottles - 1)} of beer on the wall.\n"
-    when 1
-      "#{number(bottles)} #{container(bottles)} of beer on the wall, #{number(bottles)} #{container(bottles)} of beer.\n" +
-      "Take it down and pass it around, no more #{container(bottles - 1)} of beer on the wall.\n"
     else
       "#{number(bottles)} #{container(bottles)} of beer on the wall, #{number(bottles)} #{container(bottles)} of beer.\n" +
-      "Take one down and pass it around, #{number(bottles - 1)} #{container(bottles - 1)} of beer on the wall.\n"
+      "Take #{pronoun(bottles)} down and pass it around, #{number(bottles - 1)} #{container(bottles - 1)} of beer on the wall.\n"
     end
+  end
+
+  def pronoun(pron)
+    return "it" if pron == 1
+
+    "one"
   end
 
   def container(cont)
@@ -20,6 +23,8 @@ class Bottles
   end
 
   def number(num)
+    return "no more" if num == 0
+
     num
   end
 
