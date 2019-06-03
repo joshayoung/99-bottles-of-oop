@@ -1,13 +1,19 @@
 class Bottles
   def verse(bottles)
-    case bottles
-    when 0
-      "No more #{container(bottles)} of beer on the wall, no more #{container(bottles)} of beer.\n" +
-      "Go to the store and buy some more, 99 #{container(bottles - 1)} of beer on the wall.\n"
-    else
-      "#{number(bottles)} #{container(bottles)} of beer on the wall, #{number(bottles)} #{container(bottles)} of beer.\n" +
-      "Take #{pronoun(bottles)} down and pass it around, #{number(bottles - 1)} #{container(bottles - 1)} of beer on the wall.\n"
-    end
+    "#{number(bottles).capitalize} #{container(bottles)} of beer on the wall, #{number(bottles)} #{container(bottles)} of beer.\n" +
+    "#{phrase(bottles)} #{number(sequence(bottles))} #{container(bottles - 1)} of beer on the wall.\n"
+  end
+
+  def sequence(seq)
+    return "99" if seq == 0
+
+    seq - 1
+  end
+
+  def phrase(phr)
+    return "Go to the store and buy some more," if phr == 0
+
+    "Take #{pronoun(phr)} down and pass it around,"
   end
 
   def pronoun(pron)
@@ -25,7 +31,7 @@ class Bottles
   def number(num)
     return "no more" if num == 0
 
-    num
+    num.to_s
   end
 
   def verses(verse_start, verse_end)
