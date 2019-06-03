@@ -1,7 +1,7 @@
 class Bottles
   def verse(bottles)
     "#{no_more(bottles, first_line: true)}#{container(bottles)} of beer on the wall, #{no_more(bottles, lower: true, first_line: true)}#{container(bottles)} of beer.\n" +
-    "#{phrase(bottles)} #{no_more(bottles)}#{container(bottles - 1, true)} of beer on the wall.\n"
+    "#{phrase(bottles)} #{no_more(bottles)}#{container(bottles - 1)} of beer on the wall.\n"
   end
 
   def no_more(bottles, lower: false, first_line: false)
@@ -12,10 +12,9 @@ class Bottles
     "99 " if bottles == 0
   end
 
-  def container(quantity, second_line = false)
+  def container(quantity)
     return quantity.to_s + " bottle" if quantity == 1
     return "bottles" if quantity == -1 || quantity == 0
-    return "1 six-pack" if quantity == 6 && !second_line
 
     quantity.to_s + " bottles"
   end
