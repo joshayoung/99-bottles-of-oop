@@ -1,29 +1,19 @@
 class Bottles
   def verse(bottles)
-    "#{no_more(bottles, first_line: true)}#{container(bottles)} of beer on the wall, #{no_more(bottles, lower: true, first_line: true)}#{container(bottles)} of beer.\n" +
-    "#{phrase(bottles)} #{no_more(bottles)}#{container(bottles - 1)} of beer on the wall.\n"
-  end
-
-  def no_more(bottles, lower: false, first_line: false)
-    return "no more " if bottles == 1 && !first_line
-    return "no more " if lower && bottles == 0
-    return "No more " if bottles == 0 && first_line
-
-    "99 " if bottles == 0
-  end
-
-  def container(quantity)
-    return quantity.to_s + " bottle" if quantity == 1
-    return "bottles" if quantity == -1 || quantity == 0
-
-    quantity.to_s + " bottles"
-  end
-
-  def phrase(bottles)
-    return "Go to the store and buy some more," if bottles == 0
-    return "Take it down and pass it around," if bottles == 1
-
-    "Take one down and pass it around,"
+    case bottles
+    when 0
+      "No more bottles of beer on the wall, no more bottles of beer.\n" +
+      "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
+    when 1
+      "1 bottle of beer on the wall, 1 bottle of beer.\n" +
+      "Take it down and pass it around, no more bottles of beer on the wall.\n"
+    when 2
+      "2 bottles of beer on the wall, 2 bottles of beer.\n" +
+      "Take one down and pass it around, 1 bottle of beer on the wall.\n"
+    else
+      "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer.\n" +
+      "Take one down and pass it around, #{bottles - 1} bottles of beer on the wall.\n"
+    end
   end
 
   def verses(verse_start, verse_end)
