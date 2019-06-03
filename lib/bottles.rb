@@ -2,18 +2,25 @@ class Bottles
   def verse(bottles)
     case bottles
     when 0
-      "No more bottles of beer on the wall, no more bottles of beer.\n" +
-      "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
+      "No more #{container(bottles)} of beer on the wall, no more #{container(bottles)} of beer.\n" +
+      "Go to the store and buy some more, 99 #{container(bottles - 1)} of beer on the wall.\n"
     when 1
-      "1 bottle of beer on the wall, 1 bottle of beer.\n" +
-      "Take it down and pass it around, no more bottles of beer on the wall.\n"
-    when 2
-      "2 bottles of beer on the wall, 2 bottles of beer.\n" +
-      "Take one down and pass it around, 1 bottle of beer on the wall.\n"
+      "#{number(bottles)} #{container(bottles)} of beer on the wall, #{number(bottles)} #{container(bottles)} of beer.\n" +
+      "Take it down and pass it around, no more #{container(bottles - 1)} of beer on the wall.\n"
     else
-      "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer.\n" +
-      "Take one down and pass it around, #{bottles - 1} bottles of beer on the wall.\n"
+      "#{number(bottles)} #{container(bottles)} of beer on the wall, #{number(bottles)} #{container(bottles)} of beer.\n" +
+      "Take one down and pass it around, #{number(bottles - 1)} #{container(bottles - 1)} of beer on the wall.\n"
     end
+  end
+
+  def container(cont)
+    return "bottle" if cont == 1
+
+    "bottles"
+  end
+
+  def number(num)
+    num
   end
 
   def verses(verse_start, verse_end)
