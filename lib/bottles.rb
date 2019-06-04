@@ -1,9 +1,14 @@
 require_relative '../lib/container'
+require_relative '../lib/pack'
 
 class Bottles
   def verse(bottles, cont)
-    "#{number(bottles).capitalize} #{container(bottles)} of beer on the wall, #{number(bottles)} #{container(bottles)} of beer.\n" +
-    "#{phrase(bottles)} #{number(sequence(bottles))} #{container(bottles - 1)} of beer on the wall.\n"
+    verse = "#{cont.container_number(bottles).capitalize} #{cont.six_pack(bottles)} "
+    verse += "of beer on the wall, "
+    verse += "#{cont.container_number(bottles)} #{cont.six_pack(bottles)} of beer.\n"
+    verse += "#{phrase(bottles)} #{cont.number(sequence(bottles))} "
+    verse += "#{cont.bottle(bottles - 1)} of beer on the wall.\n"
+    verse
   end
 
   def sequence(seq)
@@ -24,24 +29,10 @@ class Bottles
     "one"
   end
 
-  def container(cont)
-    return "bottle" if cont == 1
-    # return "six-pack" if cont == 6
-
-    "bottles"
-  end
-
-  def number(num)
-    return "no more" if num == 0
-    # return "1" if num == 6
-
-    num.to_s
-  end
-
   def verses(verse_start, verse_end)
-    vs = verse_start.downto(verse_end).map do |i| 
-      container = Container.new(i)
-      verse(i, container) 
+    vs = verse_start.downto(verse_end).map do |i|
+      container = Pack.new(i)
+      verse(i, container)
     end
     vs.join("\n")
   end
