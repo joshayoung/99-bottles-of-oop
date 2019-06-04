@@ -1,5 +1,7 @@
+require_relative '../lib/container'
+
 class Bottles
-  def verse(bottles)
+  def verse(bottles, cont)
     "#{number(bottles).capitalize} #{container(bottles)} of beer on the wall, #{number(bottles)} #{container(bottles)} of beer.\n" +
     "#{phrase(bottles)} #{number(sequence(bottles))} #{container(bottles - 1)} of beer on the wall.\n"
   end
@@ -24,18 +26,24 @@ class Bottles
 
   def container(cont)
     return "bottle" if cont == 1
+    # return "six-pack" if cont == 6
 
     "bottles"
   end
 
   def number(num)
     return "no more" if num == 0
+    # return "1" if num == 6
 
     num.to_s
   end
 
   def verses(verse_start, verse_end)
-    verse_start.downto(verse_end).map { |i| verse(i) }.join("\n")
+    vs = verse_start.downto(verse_end).map do |i| 
+      container = Container.new(i)
+      verse(i, container) 
+    end
+    vs.join("\n")
   end
 
   def song
