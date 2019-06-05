@@ -1,8 +1,6 @@
 gem 'minitest', '~> 5.4'
 require 'minitest/autorun'
 require_relative '../lib/bottles'
-require_relative '../lib/container'
-require_relative '../lib/pack'
 require "pry"
 require "pry-remote"
 require "pry-nav"
@@ -13,44 +11,39 @@ class BottlesTest < Minitest::Test
 99 bottles of beer on the wall, 99 bottles of beer.
 Take one down and pass it around, 98 bottles of beer on the wall.
 VERSE
-    container = Pack.new(99)
-    assert_equal expected, ::Bottles.new.verse(99, container)
+    assert_equal expected, ::Bottles.new.verse(99)
   end
 
   def test_another_verse
-    container = Pack.new(89)
     expected = <<-VERSE
 89 bottles of beer on the wall, 89 bottles of beer.
 Take one down and pass it around, 88 bottles of beer on the wall.
 VERSE
-    assert_equal expected, ::Bottles.new.verse(89, container)
+    assert_equal expected, ::Bottles.new.verse(89)
   end
 
   def test_verse_2
-    container = Pack.new(2)
     expected = <<-VERSE
 2 bottles of beer on the wall, 2 bottles of beer.
 Take one down and pass it around, 1 bottle of beer on the wall.
     VERSE
-    assert_equal expected, ::Bottles.new.verse(2, container)
+    assert_equal expected, ::Bottles.new.verse(2)
   end
 
   def test_verse_1
-    container = Pack.new(1)
     expected = <<-VERSE
 1 bottle of beer on the wall, 1 bottle of beer.
 Take it down and pass it around, no more bottles of beer on the wall.
     VERSE
-    assert_equal expected, ::Bottles.new.verse(1, container)
+    assert_equal expected, ::Bottles.new.verse(1)
   end
 
   def test_verse_0
-    container = Pack.new(0)
     expected = <<-VERSE
 No more bottles of beer on the wall, no more bottles of beer.
 Go to the store and buy some more, 99 bottles of beer on the wall.
     VERSE
-    assert_equal expected, ::Bottles.new.verse(0, container)
+    assert_equal expected, ::Bottles.new.verse(0)
   end
 
   def test_a_couple_verses
@@ -388,7 +381,6 @@ Go to the store and buy some more, 99 bottles of beer on the wall.
 1 six-pack of beer on the wall, 1 six-pack of beer.
 Take one down and pass it around, 5 bottles of beer on the wall.
     VERSE
-    container = Pack.new(6)
-    assert_equal expected, ::Bottles.new.verse(6, container)
+    assert_equal expected, ::Bottles.new.verse(6)
   end
 end

@@ -1,3 +1,5 @@
+require_relative '../lib/container'
+
 class Pack < Container
   def initialize(line)
     super(line)

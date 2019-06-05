@@ -1,8 +1,8 @@
-require_relative '../lib/container'
 require_relative '../lib/pack'
 
 class Bottles
-  def verse(bottles, cont)
+  def verse(bottles)
+    cont = Pack.new(bottles)
     verse = "#{cont.container_number(bottles).capitalize} #{cont.six_pack(bottles)} "
     verse += "of beer on the wall, "
     verse += "#{cont.container_number(bottles)} #{cont.six_pack(bottles)} of beer.\n"
@@ -31,8 +31,7 @@ class Bottles
 
   def verses(verse_start, verse_end)
     vs = verse_start.downto(verse_end).map do |i|
-      container = Pack.new(i)
-      verse(i, container)
+      verse(i)
     end
     vs.join("\n")
   end
