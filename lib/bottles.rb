@@ -1,32 +1,29 @@
-require_relative '../lib/pack'
+require_relative '../lib/container'
 
 class Bottles
   def verse(bottles)
-    cont = Pack.new(bottles)
-    verse = "#{cont.container_number(bottles).capitalize} #{cont.six_pack(bottles)} "
+    verse = "#{number(bottles).capitalize} #{bottle(bottles)} "
     verse += "of beer on the wall, "
-    verse += "#{cont.container_number(bottles)} #{cont.six_pack(bottles)} of beer.\n"
-    verse += "#{phrase(bottles)} #{cont.number(sequence(bottles))} "
-    verse += "#{cont.bottle(bottles - 1)} of beer on the wall.\n"
+    verse += "#{number(bottles)} #{bottle(bottles)} of beer.\n"
+    verse += "#{phrase(bottles)} #{number(sequence(bottles))} "
+    verse += "#{bottle(bottles - 1)} of beer on the wall.\n"
     verse
   end
 
-  def sequence(seq)
-    return "99" if seq == 0
-
-    seq - 1
+  def bottle(num)
+    Container.new(num).bottle(num)
   end
 
-  def phrase(phr)
-    return "Go to the store and buy some more," if phr == 0
-
-    "Take #{pronoun(phr)} down and pass it around,"
+  def number(num)
+    Container.new(num).number(num)
   end
 
-  def pronoun(pron)
-    return "it" if pron == 1
+  def sequence(num)
+    Container.new(num).sequence(num)
+  end
 
-    "one"
+  def phrase(num)
+    Container.new(num).phrase(num)
   end
 
   def verses(verse_start, verse_end)
