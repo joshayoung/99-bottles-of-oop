@@ -11,19 +11,19 @@ class Bottles
   end
 
   def bottle(num)
-    Container.new(num).bottle(num)
+    Container.new(num).bottle
   end
 
   def number(num)
-    Container.new(num).number(num)
+    Container.new(num).number
   end
 
   def sequence(num)
-    Container.new(num).sequence(num)
+    Container.new(num).sequence
   end
 
   def phrase(num)
-    Container.new(num).phrase(num)
+    Container.new(num).phrase
   end
 
   def verses(verse_start, verse_end)
