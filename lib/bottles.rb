@@ -2,28 +2,12 @@ require_relative '../lib/container'
 
 class Bottles
   def verse(bottles)
-    verse = "#{number(bottles).capitalize} #{bottle(bottles)} "
+    verse = "#{Container.new(bottles).number.capitalize} #{Container.new(bottles).bottle} "
     verse += "of beer on the wall, "
-    verse += "#{number(bottles)} #{bottle(bottles)} of beer.\n"
-    verse += "#{phrase(bottles)} #{number(sequence(bottles))} "
-    verse += "#{bottle(bottles - 1)} of beer on the wall.\n"
+    verse += "#{Container.new(bottles).number} #{Container.new(bottles).bottle} of beer.\n"
+    verse += "#{Container.new(bottles).phrase} #{Container.new(Container.new(bottles).sequence).number} "
+    verse += "#{Container.new(bottles -1).bottle} of beer on the wall.\n"
     verse
-  end
-
-  def bottle(num)
-    Container.new(num).bottle
-  end
-
-  def number(num)
-    Container.new(num).number
-  end
-
-  def sequence(num)
-    Container.new(num).sequence
-  end
-
-  def phrase(num)
-    Container.new(num).phrase
   end
 
   def verses(verse_start, verse_end)
