@@ -1,20 +1,19 @@
-require_relative '../lib/container'
+require_relative '../lib/bottle_number'
 
 class Bottles
-  def verse(bottles)
-    verse = "#{Container.new(bottles).number.capitalize} #{Container.new(bottles).bottle} "
-    verse += "of beer on the wall, "
-    verse += "#{Container.new(bottles).number} #{Container.new(bottles).bottle} of beer.\n"
-    verse += "#{Container.new(bottles).phrase} #{Container.new(Container.new(bottles).sequence).number} "
-    verse += "#{Container.new(bottles -1).bottle} of beer on the wall.\n"
-    verse
+  def verse(number)
+    bottle_number = BottleNumber.new(number)
+    next_bottle_number = BottleNumber.new(bottle_number.successor)
+    "#{bottle_number.quantity.capitalize} #{bottle_number.container} " + 
+    "of beer on the wall, " + 
+    "#{bottle_number.quantity} #{bottle_number.container} of beer.\n" + 
+    "#{bottle_number.action}, " + 
+    "#{next_bottle_number.quantity} #{next_bottle_number.container} " + 
+    "of beer on the wall.\n"
   end
 
   def verses(verse_start, verse_end)
-    vs = verse_start.downto(verse_end).map do |i|
-      verse(i)
-    end
-    vs.join("\n")
+    verse_start.downto(verse_end).collect { |i| verse(i)}.join("\n")
   end
 
   def song
