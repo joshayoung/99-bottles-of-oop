@@ -1,6 +1,7 @@
 require_relative '../lib/bottle_number'
 require_relative '../lib/bottle_number0'
 require_relative '../lib/bottle_number1'
+require_relative '../lib/bottle_number6'
 
 class Bottles
   def verse(number)
@@ -20,6 +21,8 @@ class Bottles
       BottleNumber0.new(number)
     when 1
       BottleNumber1.new(number)
+    when 6
+      BottleNumber6.new(number)
     else
       BottleNumber.new(number)
     end
