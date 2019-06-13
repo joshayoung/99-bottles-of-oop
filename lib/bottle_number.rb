@@ -4,6 +4,21 @@ class BottleNumber
     @number = number
   end
 
+  def self.for(number)
+    # return number if number.kind_of?(BottleNumber)
+
+    case number
+    when 0
+      BottleNumber0.new(number)
+    when 1
+      BottleNumber1.new(number)
+    when 6
+      BottleNumber6.new(number)
+    else
+      BottleNumber.new(number)
+    end
+  end
+
   def container
     "bottles"
   end
@@ -17,10 +32,14 @@ class BottleNumber
   end
 
   def successor
-    number - 1
+    BottleNumber.for(number - 1)
   end
 
   def quantity
     number.to_s
+  end
+
+  def to_s
+    "#{quantity} #{container}"
   end
 end

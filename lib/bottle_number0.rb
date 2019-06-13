@@ -1,6 +1,6 @@
 class BottleNumber0 < BottleNumber
   def successor
-    "99"
+    BottleNumber.for("99")
   end
 
   def quantity
